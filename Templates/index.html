@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MARS DATA SCRAPING</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style> img {max-width: 100%;}</style>
+</head>
+
+<body>
+<div class="container">
+    <div class="jumbotron text-center" style="background-color:red">
+         <h1><strong>Mission to Mars</strong></h1>
+         <p>
+            <a class = "btn btn-primary brn-lg" href = "scrape" role = "button">Scrape New Data</a>
+        </p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2> <strong>Latest Mars News</strong>  </h2>
+            <hr>
+            <article>
+          
+                <h3 class ="heading">
+                    
+                    {{listings.news_title}}
+                </h3>
+                    <p>{{listings.news_paragraph}}</p>
+                </article>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            
+            <h2> <strong>Feautured Mars Image</strong></h2>
+            <img src = {{listings.image_url}} >
+       
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="panel panel-default">
+                        <div class="panel-body">
+                        <h3><strong>Current Weather on Mars</strong></h3>
+                        <p> {{listings.twitter}} </p>
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+                    
+                            <h3><strong>Mars Facts</strong></h3>
+                            {{listings.mars_facts|safe}}
+                          
+            </div>
+
+            
+        </div>
+    </div>
+    <div class ="row">
+        <div class="col-md-12">
+            <h2 align="center"><strong>Mars Hemispheres</strong></h2>
+            <hr>
+            <div class ="row">  
+            {% for item in listings.hemisphere %}
+                <div class="col-md-6 col-xs-3"> 
+                <div class="panel panel-default">
+                <div class="panel-body">
+                <img src= {{ item['img_url'] }}>
+                <h3><strong> {{ item['title'] }} </strong></h3>
+                </div>
+                </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html> 
